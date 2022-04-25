@@ -1,19 +1,26 @@
 <?xml version="1.0"?>
 <package>
-    <name>android_core</name>
-    <version>0.4.0</version>
-    <description>
-        Android support packages for rosjava.
-    </description>
-    <url type="website">http://ros.org/wiki/android_core</url>
-    <url type="repository">https://github.com/rosjava/android_core</url>
-    <url type="bugtracker">https://github.com/rosjava/android_core/issues</url>
-    <maintainer email="d.stonier@gmail.com">Daniel Stonier</maintainer>
-    <maintainer email="damonkohler@google.com">Damon Kohler</maintainer>
-    <author email="damonkohler@google.com">Damon Kohler</author>
-    <license>Apache 2.0</license>
+  <name>android_core</name>
+  <version>0.4.0</version>
+  <description>Android support packages for rosjava.</description>
 
-    <buildtool_depend>catkin</buildtool_depend>
-    <build_depend>rosjava_build_tools</build_depend>
-    <build_depend>rosjava_core</build_depend>
+  <url type="website">http://ros.org/wiki/android_core</url>
+  <url type="repository">https://github.com/rosjava/android_core</url>
+  <url type="bugtracker">https://github.com/rosjava/android_core/issues</url>
+  <maintainer email="ronaldsonbellande@gmail.com">Ronaldson Bellande</maintainer>
+
+  <author>Damon Kohler</author>
+  <license>Apache 2.0</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <build_depend>rosjava_build_tools</build_depend>
+  <build_depend>rosjava_core</build_depend>
+
+  <build_export_depend>rosjava_build_tools</build_export_depend>
+  <build_export_depend>rosjava_core</build_export_depend>
+
+  <exec_depend>rosjava_build_tools</exec_depend>
+  <exec_depend>rosjava_core</exec_depend>
+
 </package>
