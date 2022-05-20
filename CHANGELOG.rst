@@ -1,6 +1,13 @@
 Changelog
 =========
 
+0.5.0 (2021-05-19)
+------------------
+* Update package.xml, CMakeList.txt for noetic branch
+* Update gradle and wapper to be up-to-date
+* Fix Bugs that has to do with the gradle building
+* Contributors: Ronaldson Bellande
+
 0.4.0 (2018-10-04)
 * Deprecating android_10 and android_15; adding support for Android P.
 * Minor fixes for visualization layers.
