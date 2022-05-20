@@ -14,12 +14,8 @@
  * the License.
  */
 
-//task wrapper(type: Wrapper) {
-//    gradleVersion = "4.10.2"
-//}
-
 wrapper {
-    gradleVersion = '7.3.3'
+    gradleVersion = "7.2.0"
     distributionUrl = distributionUrl.replace("bin", "all")
 }
 
