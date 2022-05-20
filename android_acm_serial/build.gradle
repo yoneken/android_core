@@ -15,17 +15,17 @@
  */
 
 dependencies {
-  compile project(':android_core_components')
+  api project(':android_core_components')
 }
 
 apply plugin: 'com.android.library'
 
 android {
-  compileSdkVersion 28
+  compileSdk 32
 
   defaultConfig {
-    minSdkVersion 16
-    targetSdkVersion 28
+    minSdk 21
+    targetSdk 32
     versionCode 1
     versionName "1.0"
   }

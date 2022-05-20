@@ -15,20 +15,20 @@
  */
 
 dependencies {
-  compile 'org.ros.rosjava_core:rosjava_benchmarks:[0.3,0.4)'
-  compile project(':android_core_components')
+  implementation 'org.ros.rosjava_core:rosjava_benchmarks:[0.3,0.4)'
+    implementation project(':android_core_components')
 }
 
 apply plugin: 'com.android.application'
 
 android {
-  compileSdkVersion 28
+  compileSdk 32
 
   defaultConfig {
-    minSdkVersion 16
-    applicationId "org.ros.android.android_benchmarks"
-    targetSdkVersion 28
+    minSdk 21
+    targetSdk 32
     versionCode 1
     versionName "1.0"
+    applicationId "org.ros.android.android_benchmarks"
   }
 }
