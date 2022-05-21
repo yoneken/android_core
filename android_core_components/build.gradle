@@ -14,15 +14,15 @@
  * the License.
  */
 
-dependencies {
-    api "org.ros.rosjava_core:rosjava:0.3.6"
-    api "org.ros.rosjava_messages:diagnostic_msgs:[1.12,1.13)"
-    api "org.ros.rosjava_messages:sensor_msgs:[1.12,1.13)"
-    api 'org.ros.rosjava_core:rosjava_geometry:[0.3,0.4)'
-    api 'org.ros.rosjava_messages:visualization_msgs:[1.12,1.13)'
-    api "com.android.support:appcompat-v7:32.0.0"
-    api 'com.android.support:support-v4:32.0.0'
-}
+//dependencies {
+//    api "org.ros.rosjava_core:rosjava:0.3.6"
+//    api "org.ros.rosjava_messages:diagnostic_msgs:[1.12,1.13)"
+//    api "org.ros.rosjava_messages:sensor_msgs:[1.12,1.13)"
+//    api 'org.ros.rosjava_core:rosjava_geometry:[0.3,0.4)'
+//    api 'org.ros.rosjava_messages:visualization_msgs:[1.12,1.13)'
+//    api "com.android.support:appcompat-v7:32.0.0"
+//    api 'com.android.support:support-v4:32.0.0'
+//}
 
 apply plugin: "com.android.library"
 

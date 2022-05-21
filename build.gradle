@@ -14,6 +14,7 @@
  * the License.
  */
 
+
 wrapper {
     gradleVersion = "7.2.0"
     distributionUrl = distributionUrl.replace("bin", "all")
@@ -24,16 +25,14 @@ buildscript {
 }
 
 apply plugin: "catkin"
+apply plugin: "maven-publish"
+apply plugin: "java"
 
 allprojects {
-    group "org.ros.android_core"
-    version = project.catkin.pkg.version
     repositories {
         maven {
             allowInsecureProtocol = true
             url 'https://repo1.maven.org/maven2'
-        }
-        maven {
             url = "https://maven.pkg.github.com/Application-UI-UX"
         }
         mavenLocal()
@@ -42,61 +41,73 @@ allprojects {
     }
 }
 
-configure(subprojects.findAll { it.name.startsWith("android_") }) {
-    /*
-     * The android plugin configures a few things:
-     *
-     *  - local deployment repository : where it dumps the jars and packaged artifacts)
-     *  - local maven repositories    : where it finds your locally installed/built artifacts)
-     *  - external maven repositories : where it goes looking if it can't find dependencies locally
-     *  - android build tools version : which version we use across the board
-     * 
-     * To modify, or add repos to the default external maven repositories list, pull request against this code:
-     *
-     *   https://github.com/rosjava/rosjava_bootstrap/blob/kinetic/gradle_plugins/src/main/groovy/org/ros/gradle_plugins/RosPlugin.groovy#L31
-     * 
-     * To modify the build tools version, pull request against this code:
-     * 
-     *   https://github.com/rosjava/rosjava_bootstrap/blob/kinetic/gradle_plugins/src/main/groovy/org/ros/gradle_plugins/RosAndroid.groovy#L14
-     */
 
-    apply plugin: "maven-publish"
-    afterEvaluate { project ->
-        // Change the layout of Android projects to be compatible with Eclipse.
-        android {
-            sourceSets {
-                //noinspection GroovyAssignabilityCheck
-                main {
-                    manifest.srcFile "AndroidManifest.xml"
-                    res.srcDirs "res"
-                    assets.srcDirs "assets"
-                    java.srcDirs "src"
+subprojects {
+    /*
+    * The android plugin configures a few things:
+    * plugins are published in Application-UI-UX and can be imported in any projects, to be used
+    * https://github.com/Application-UI-UX
+    */
+
+    publishing {
+        repositories {
+            maven {
+                name = "android_core"
+                url = uri("https://maven.pkg.github.com/Application-UI-UX/android_core")
+                credentials {
+                    username = project.findProperty("gpr.user") ?: System.getenv("RonaldsonBellande")
+                    password = project.findProperty("gpr.key") ?: System.getenv("")
                 }
             }
-
-            // Copy JAR dependencies into the libs directory for Eclipse.
-            task deployLibs(type: Copy) {
-                from { configurations.compile }
-                into { "${project.projectDir}/libs" }
-            }
-
-            // Exclude a few files that are duplicated across our dependencies and
-            // prevent packaging Android applications.
-            packagingOptions {
-                /* https://github.com/rosjava/android_core/issues/194 */
-                exclude "META-INF/LICENSE.txt"
-                exclude "META-INF/NOTICE.txt"
-            }
-
-            lintOptions {
-                abortOnError false
+        }
+        publishing {
+            publications {
+                productionRelease(MavenPublication) {
+//                    from components.productionRelease
+                    groupId = 'org.ros'
+                    artifactId = 'android_core'
+                    version = "0.5.0"
+                    pom {
+                        name = "android_core"
+                        description = "Maven POM customization android core package"
+                        url = "https://github.com/Application-UI-UX/android_core"
+                        licenses {
+                            license {
+                                name = "The Apache License, Version 2.0"
+                                url = "http://www.apache.org/licenses/LICENSE-2.0.txt"
+                            }
+                        }
+                        developers {
+                            developer {
+                                id = "RonaldsonBellande"
+                                name = "Ronaldson Bellande"
+                                email = "ronaldsonbellande@gmail.com"
+                            }
+                        }
+                        scm {
+                            connection = "scm:svn:https://github.com/Application-UI-UX/android_core/"
+                            developerConnection = "scm:svn:https://github.com/Application-UI-UX/android_core/"
+                            url = "https://github.com/Application-UI-UX/android_core/"
+                        }
+                    }
+                }
             }
         }
     }
 }
 
-defaultTasks 'assembleRelease', 'uploadArchives'
+//configure(subprojects.findAll { it.name.startsWith("android_") }) {
+//
+//    afterEvaluate { project ->
+//        android {
+//            // Exclude a few files that are duplicated across our dependencies and
+//            // prevent packaging Android applications.
+//            packagingOptions {
+//                exclude "META-INF/LICENSE.txt"
+//                exclude "META-INF/NOTICE.txt"
+//            }
+//        }
+//    }
+//}
 
-task clean(type: Delete) {
-    delete rootProject.buildDir
-}
+defaultTasks 'assembleRelease', 'uploadArchives'
