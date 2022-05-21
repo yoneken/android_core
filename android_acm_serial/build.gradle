@@ -15,7 +15,9 @@
  */
 
 dependencies {
-  api project(':android_core_components')
+  compile 'org.ros.rosjava_core:rosjava_benchmarks:[0.3,0.4)'
+  implementation project(':android_core_components')
+  implementation project(':android_acm_serial')
 }
 
 apply plugin: 'com.android.library'

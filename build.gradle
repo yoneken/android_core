@@ -28,6 +28,18 @@ apply plugin: "catkin"
 allprojects {
     group "org.ros.android_core"
     version = project.catkin.pkg.version
+    repositories {
+        maven {
+            allowInsecureProtocol = true
+            url 'https://repo1.maven.org/maven2'
+        }
+        maven {
+            url = "https://maven.pkg.github.com/Application-UI-UX"
+        }
+        mavenLocal()
+        mavenCentral()
+        google()
+    }
 }
 
 configure(subprojects.findAll { it.name.startsWith("android_") }) {
@@ -47,7 +59,8 @@ configure(subprojects.findAll { it.name.startsWith("android_") }) {
      * 
      *   https://github.com/rosjava/rosjava_bootstrap/blob/kinetic/gradle_plugins/src/main/groovy/org/ros/gradle_plugins/RosAndroid.groovy#L14
      */
-    apply plugin: "ros-android"
+
+    apply plugin: "maven-publish"
     afterEvaluate { project ->
         // Change the layout of Android projects to be compatible with Eclipse.
         android {
@@ -83,3 +96,7 @@ configure(subprojects.findAll { it.name.startsWith("android_") }) {
 }
 
 defaultTasks 'assembleRelease', 'uploadArchives'
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}

@@ -15,7 +15,8 @@
  */
 
 dependencies {
-  implementation 'org.ros.rosjava_core:rosjava_benchmarks:[0.3,0.4)'
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+//    implementation 'org.ros.rosjava_core:rosjava_benchmarks:[0.3,0.4)'
     implementation project(':android_core_components')
 }
 

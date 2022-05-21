@@ -18,11 +18,16 @@ rootProject.buildscript {
   apply from: "https://github.com/Application-UI-UX/rosjava_bootstrap/raw/noetic/buildscript.gradle"
   dependencies {
     classpath 'com.android.tools.build:gradle:7.2.0'
+    classpath 'com.google.gms:google-services:4.3.10'
+//    api project(':android_core_components')
+
   }
 
   allprojects {
     repositories {
       google()
+      mavenLocal()
+      mavenCentral()
     }
   }
 }
