@@ -21,7 +21,19 @@ wrapper {
 }
 
 buildscript {
-    apply from: project.file("buildscript.gradle")
+    apply from: "https://github.com/Application-UI-UX/rosjava_bootstrap/raw/noetic/buildscript.gradle"
+    dependencies {
+        classpath 'com.android.tools.build:gradle:7.2.0'
+        classpath 'com.google.gms:google-services:4.3.10'
+    }
+
+    allprojects {
+        repositories {
+            google()
+            mavenLocal()
+            mavenCentral()
+        }
+    }
 }
 
 apply plugin: "catkin"
@@ -60,54 +72,38 @@ subprojects {
                 }
             }
         }
-        publishing {
-            publications {
-                productionRelease(MavenPublication) {
+        publications {
+            productionRelease(MavenPublication) {
 //                    from components.productionRelease
-                    groupId = 'org.ros'
-                    artifactId = 'android_core'
-                    version = "0.5.0"
-                    pom {
-                        name = "android_core"
-                        description = "Maven POM customization android core package"
-                        url = "https://github.com/Application-UI-UX/android_core"
-                        licenses {
-                            license {
-                                name = "The Apache License, Version 2.0"
-                                url = "http://www.apache.org/licenses/LICENSE-2.0.txt"
-                            }
+                groupId = 'org.ros'
+                artifactId = 'android_core'
+                version = "0.5.0"
+                pom {
+                    name = "android_core"
+                    description = "Maven POM customization android core package"
+                    url = "https://github.com/Application-UI-UX/android_core"
+                    licenses {
+                        license {
+                            name = "The Apache License, Version 2.0"
+                            url = "http://www.apache.org/licenses/LICENSE-2.0.txt"
                         }
-                        developers {
-                            developer {
-                                id = "RonaldsonBellande"
-                                name = "Ronaldson Bellande"
-                                email = "ronaldsonbellande@gmail.com"
-                            }
+                    }
+                    developers {
+                        developer {
+                            id = "RonaldsonBellande"
+                            name = "Ronaldson Bellande"
+                            email = "ronaldsonbellande@gmail.com"
                         }
-                        scm {
-                            connection = "scm:svn:https://github.com/Application-UI-UX/android_core/"
-                            developerConnection = "scm:svn:https://github.com/Application-UI-UX/android_core/"
-                            url = "https://github.com/Application-UI-UX/android_core/"
-                        }
+                    }
+                    scm {
+                        connection = "scm:svn:https://github.com/Application-UI-UX/android_core/"
+                        developerConnection = "scm:svn:https://github.com/Application-UI-UX/android_core/"
+                        url = "https://github.com/Application-UI-UX/android_core/"
                     }
                 }
             }
         }
     }
 }
-
-//configure(subprojects.findAll { it.name.startsWith("android_") }) {
-//
-//    afterEvaluate { project ->
-//        android {
-//            // Exclude a few files that are duplicated across our dependencies and
-//            // prevent packaging Android applications.
-//            packagingOptions {
-//                exclude "META-INF/LICENSE.txt"
-//                exclude "META-INF/NOTICE.txt"
-//            }
-//        }
-//    }
-//}
 
 defaultTasks 'assembleRelease', 'uploadArchives'

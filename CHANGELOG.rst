@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.5.0 (2021-05-19)
+0.5.0 (2022-05-19)
 ------------------
 * Update package.xml, CMakeList.txt for noetic branch
 * Update gradle and wapper to be up-to-date
