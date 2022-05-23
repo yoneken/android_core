@@ -14,9 +14,9 @@
  * the License.
  */
 
-dependencies {
-  implementation project(':android_core_components')
-}
+//dependencies {
+//  implementation project(':android_core_components')
+//}
 
 apply plugin: 'com.android.application'
 

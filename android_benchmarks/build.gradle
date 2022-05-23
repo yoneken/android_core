@@ -14,11 +14,10 @@
  * the License.
  */
 
-dependencies {
-    compile fileTree(include: ['*.jar'], dir: 'libs')
-//    implementation 'org.ros.rosjava_core:rosjava_benchmarks:[0.3,0.4)'
-    implementation project(':android_core_components')
-}
+//dependencies {
+//    compile fileTree(include: ['*.jar'], dir: 'libs')
+//    implementation project(':android_core_components')
+//}
 
 apply plugin: 'com.android.application'
 
