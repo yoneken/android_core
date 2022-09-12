@@ -14,7 +14,6 @@
  * the License.
  */
 
-
 wrapper {
     gradleVersion = "7.2.0"
     distributionUrl = distributionUrl.replace("bin", "all")
@@ -22,17 +21,13 @@ wrapper {
 
 buildscript {
     apply from: "https://github.com/Application-UI-UX/rosjava_bootstrap/raw/noetic/buildscript.gradle"
+    repositories {
+        google()
+        mavenLocal()
+        mavenCentral()
+    }
     dependencies {
         classpath 'com.android.tools.build:gradle:7.2.0'
-        classpath 'com.google.gms:google-services:4.3.10'
-    }
-
-    allprojects {
-        repositories {
-            google()
-            mavenLocal()
-            mavenCentral()
-        }
     }
 }
 
