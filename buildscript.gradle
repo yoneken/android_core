@@ -35,7 +35,8 @@ rootProject.buildscript {
     }
 }
 
+apply plugin: 'java-library'
 dependencies {
-    implementation 'com.github.Application-UI-UX:rosjava_build_tools:0.4.0'
-    //compile 'com.github.Application-UI-UX:rosjava_build_tools:0.4.0'
+    //implementation 'com.github.Application-UI-UX:rosjava_build_tools:0.4.0'
+    api 'com.github.Application-UI-UX:rosjava_build_tools:0.4.0'
 }
